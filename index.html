@@ -148,7 +148,7 @@
       margin-left: 35px;
     }
 
-    /* Hero Workspace - FIXED MASSIVE GAP ANOMALY */
+    /* Hero Workspace */
     .hero-banner {
       min-height: auto;
       display: flex;
@@ -190,12 +190,11 @@
       text-transform: uppercase;
     }
 
-    /* Online Moon Graphic Styling */
-    .hero-moon-img {
-      width: clamp(130px, 18vw, 240px);
-      height: clamp(130px, 18vw, 240px);
-      object-fit: contain;
-      filter: drop-shadow(0 0 30px rgba(255, 170, 59, 0.35));
+    /* Pure Bulletproof Vector Moon */
+    .hero-moon-svg {
+      width: clamp(130px, 18vw, 220px);
+      height: clamp(130px, 18vw, 220px);
+      filter: drop-shadow(0 0 35px rgba(255, 170, 59, 0.4));
       animation: float-moon 6s ease-in-out infinite;
       flex-shrink: 0;
     }
@@ -322,7 +321,7 @@
       color: var(--text-primary);
     }
 
-    /* Staggered Capabilities Matrix - FIXED TYPE HIERARCHY */
+    /* Staggered Capabilities Matrix */
     .capabilities-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -483,7 +482,7 @@
       flex-wrap: wrap;
     }
 
-    /* Floating WhatsApp System - FIXED ONLINE LOGO */
+    /* Floating WhatsApp System - PURE INLINE VECTOR SVG (CAN NEVER BREAK) */
     .whatsapp-float {
       position: fixed;
       bottom: 40px;
@@ -511,12 +510,12 @@
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Cleaned WhatsApp Image Element */
-    .wa-img-logo {
+    .whatsapp-icon-bg svg {
       width: 34px;
       height: 34px;
-      object-fit: contain;
+      fill: #ffffff;
       display: block;
+      flex-shrink: 0;
     }
 
     .whatsapp-float:hover .whatsapp-icon-bg {
@@ -604,15 +603,30 @@
     </div>
   </nav>
 
-  <!-- Hero Landing Interface Workspace with Moon Image -->
+  <!-- Hero Landing Workspace with Bulletproof Vector Moon -->
   <header id="home" class="hero-banner">
     <div class="banner-content">
       <span class="meta-tag">[ 00 // DESIGN DIRECTOR ]</span>
       
-      <!-- Flex Title with Online Moon Graphic -->
+      <!-- Flex Title with Inline SVG Moon Graphic -->
       <div class="hero-title-wrapper">
         <h1>Chandrakant<br/>Malli</h1>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.png" alt="Moon Visual Accent" class="hero-moon-img" />
+        <svg class="hero-moon-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="80" fill="url(#moon-grad)"/>
+          <!-- Moon Craters -->
+          <circle cx="75" cy="70" r="18" fill="#d8b068" opacity="0.35"/>
+          <circle cx="125" cy="120" r="22" fill="#d8b068" opacity="0.25"/>
+          <circle cx="130" cy="65" r="12" fill="#d8b068" opacity="0.3"/>
+          <circle cx="70" cy="135" r="14" fill="#d8b068" opacity="0.2"/>
+          <circle cx="100" cy="105" r="9" fill="#d8b068" opacity="0.25"/>
+          <defs>
+            <radialGradient id="moon-grad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(70 60) rotate(48) scale(110)">
+              <stop stop-color="#fff8e7"/>
+              <stop offset="0.6" stop-color="#f5c26b"/>
+              <stop offset="1" stop-color="#b87314"/>
+            </radialGradient>
+          </defs>
+        </svg>
       </div>
 
       <div class="hero-flex-layout">
@@ -668,7 +682,7 @@
     </div>
   </section>
 
-  <!-- Selected Works Gallery with Original Local File Names -->
+  <!-- Selected Works Gallery -->
   <section id="gallery" class="reveal container">
     <div class="studio-header">
       <h2>Selected Works Gallery</h2>
@@ -852,12 +866,14 @@
     </div>
   </section>
 
-  <!-- Floating WhatsApp Action with Free Online SVG/PNG Logo -->
+  <!-- Bulletproof Floating WhatsApp Action SVG -->
   <a href="https://wa.me/8088893393" target="_blank" class="whatsapp-float" aria-label="Initiate direct studio brief via WhatsApp">
     <div class="pulse-ring animate-pulse1"></div>
     <div class="pulse-ring animate-pulse2"></div>
     <div class="whatsapp-icon-bg">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png" alt="WhatsApp" class="wa-img-logo" />
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M18.385 5.586A9.002 9.002 0 0 0 4.09 14.832L2.03 21.01l6.305-2.016A8.96 8.96 0 0 0 12.002 20c4.972 0 9.018-4.04 9.022-9.014a8.97 8.97 0 0 0-2.639-6.40M12.002 18.34a7.33 7.33 0 0 1-3.816-1.066l-.273-.162-3.738 1.196 1.218-3.664-.179-.286a7.318 7.318 0 0 1-1.127-3.924c.003-4.053 3.305-7.35 7.361-7.35a7.31 7.31 0 0 1 5.2 2.153 7.33 7.33 0 0 1 2.153 5.2c-.003 4.055-3.305 7.353-7.36 7.353m4.032-5.503c-.22-.11-1.307-.645-1.51-.718-.2-.074-.347-.11-.493.11-.147.22-.568.717-.696.864-.128.147-.256.165-.477.055-.22-.11-.93-.343-1.772-1.094-.654-.584-1.096-1.306-1.225-1.526-.128-.22-.014-.34.096-.449.1-.1.22-.257.33-.385.11-.129.147-.22.22-.367.073-.147.037-.275-.018-.385-.055-.11-.494-1.192-.677-1.632-.178-.43-.362-.37-.494-.377l-.42-.006c-.147 0-.385.055-.587.275-.202.22-.77.752-.77 1.833 0 1.082.788 2.127.897 2.274.11.146 1.55 2.366 3.755 3.32.524.226.934.362 1.254.464.527.167 1.007.143 1.386.086.423-.064 1.307-.534 1.49-.1.184-.431.184-.8 1.13-.655.056-.073.056-.146.037-.22"/>
+      </svg>
     </div>
   </a>
 
@@ -951,7 +967,7 @@
       if (isDarkMode) startStars();
 
       /* ==========================================================
-         ORCHESTRATED SCROLL REVEAL TRIGGERS
+         SCROLL REVEAL TRIGGERS
       ========================================================== */
       const reveals = document.querySelectorAll(".reveal");
       
@@ -969,7 +985,7 @@
       revealOnScroll();
 
       /* ==========================================================
-         STUDIO PORTFOLIO LIGHTBOX ENGINE
+         LIGHTBOX ENGINE
       ========================================================== */
       const lightbox = document.getElementById("lightbox");
       const lightboxImg = lightbox.querySelector("img");
@@ -1007,7 +1023,7 @@
       });
 
       /* ==========================================================
-         ACCURATE SCROLL OFFSET INTERACTION ROUTER
+         SMOOTH NAV SCROLL
       ========================================================== */
       document.querySelectorAll(".nav-links a").forEach(link => {
         link.addEventListener("click", e => {
