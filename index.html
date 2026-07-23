@@ -173,7 +173,7 @@
       display: block;
     }
 
-    /* Title & Moon Layout Wrapper */
+    /* Title & Celestial Graphic Wrapper */
     .hero-title-wrapper {
       display: flex;
       align-items: center;
@@ -190,18 +190,43 @@
       text-transform: uppercase;
     }
 
-    /* Pure Bulletproof Vector Moon */
+    /* Vector Moon Graphic (Dark Mode Active) */
     .hero-moon-svg {
       width: clamp(130px, 18vw, 220px);
       height: clamp(130px, 18vw, 220px);
       filter: drop-shadow(0 0 35px rgba(255, 170, 59, 0.4));
       animation: float-moon 6s ease-in-out infinite;
       flex-shrink: 0;
+      display: block;
+    }
+
+    /* Vector Sun Graphic (Light Mode Active) */
+    .hero-sun-svg {
+      width: clamp(130px, 18vw, 220px);
+      height: clamp(130px, 18vw, 220px);
+      filter: drop-shadow(0 0 40px rgba(217, 119, 6, 0.35));
+      animation: spin-sun 20s linear infinite;
+      flex-shrink: 0;
+      display: none;
+    }
+
+    /* Toggle Celestial Objects based on Theme */
+    .light-mode .hero-moon-svg {
+      display: none !important;
+    }
+
+    .light-mode .hero-sun-svg {
+      display: block !important;
     }
 
     @keyframes float-moon {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-12px) rotate(4deg); }
+    }
+
+    @keyframes spin-sun {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .hero-flex-layout {
@@ -482,7 +507,7 @@
       flex-wrap: wrap;
     }
 
-    /* Floating WhatsApp System - PURE INLINE VECTOR SVG (CAN NEVER BREAK) */
+    /* Floating WhatsApp System - PURE INLINE VECTOR SVG */
     .whatsapp-float {
       position: fixed;
       bottom: 40px;
@@ -603,17 +628,18 @@
     </div>
   </nav>
 
-  <!-- Hero Landing Workspace with Bulletproof Vector Moon -->
+  <!-- Hero Landing Workspace with Dual Celestial Objects -->
   <header id="home" class="hero-banner">
     <div class="banner-content">
       <span class="meta-tag">[ 00 // DESIGN DIRECTOR ]</span>
       
-      <!-- Flex Title with Inline SVG Moon Graphic -->
+      <!-- Flex Title with Vector Celestial Objects -->
       <div class="hero-title-wrapper">
         <h1>Chandrakant<br/>Malli</h1>
+        
+        <!-- Inline Vector Moon (Dark Mode) -->
         <svg class="hero-moon-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="100" cy="100" r="80" fill="url(#moon-grad)"/>
-          <!-- Moon Craters -->
           <circle cx="75" cy="70" r="18" fill="#d8b068" opacity="0.35"/>
           <circle cx="125" cy="120" r="22" fill="#d8b068" opacity="0.25"/>
           <circle cx="130" cy="65" r="12" fill="#d8b068" opacity="0.3"/>
@@ -625,6 +651,33 @@
               <stop offset="0.6" stop-color="#f5c26b"/>
               <stop offset="1" stop-color="#b87314"/>
             </radialGradient>
+          </defs>
+        </svg>
+
+        <!-- Inline Vector Sun (Light Mode) -->
+        <svg class="hero-sun-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="54" fill="url(#sun-core-grad)"/>
+          <!-- Radiant Rays -->
+          <g stroke="url(#sun-ray-grad)" stroke-width="7" stroke-linecap="round" opacity="0.9">
+            <line x1="100" y1="18" x2="100" y2="34"/>
+            <line x1="100" y1="166" x2="100" y2="182"/>
+            <line x1="18" y1="100" x2="34" y2="100"/>
+            <line x1="166" y1="100" x2="182" y2="100"/>
+            <line x1="42" y1="42" x2="53" y2="53"/>
+            <line x1="147" y1="147" x2="158" y2="158"/>
+            <line x1="42" y1="158" x2="53" y2="147"/>
+            <line x1="147" y1="53" x2="158" y2="42"/>
+          </g>
+          <defs>
+            <radialGradient id="sun-core-grad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(80 75) scale(75)">
+              <stop stop-color="#ffffff"/>
+              <stop offset="0.45" stop-color="#ffb703"/>
+              <stop offset="1" stop-color="#d97706"/>
+            </radialGradient>
+            <linearGradient id="sun-ray-grad" x1="0" y1="0" x2="200" y2="200">
+              <stop stop-color="#ffaa3b"/>
+              <stop offset="1" stop-color="#d97706"/>
+            </linearGradient>
           </defs>
         </svg>
       </div>
