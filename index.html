@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chandrakant Malli | Senior Graphic Designer Portfolio</title>
+  
+  <!-- Global Fonts Dependency -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" />
+
+  <style>
+    /* ==========================================================
+       THE STUDIO VISUAL IDENTITY & SYSTEMS SYSTEM
+    ========================================================== */
+    :root {
+      --cosmic-bg: #06050a;
+      --text-primary: #ffffff;
+      --text-secondary: #76748c;
+      --accent-gold: #ffaa3b;
+      --accent-dim-gold: rgba(255, 170, 59, 0.1);
+      --studio-border: rgba(255, 255, 255, 0.08);
+      
+      /* Vibrant Button Colors */
+      --btn-resume: #d97706;
+      --btn-linkedin: #0077b5;
+      --btn-behance: #0057ff;
+    }
+
+    .light-mode {
+      --cosmic-bg: #f8fafc;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --accent-gold: #c27803;
+      --accent-dim-gold: rgba(194, 120, 3, 0.08);
+      --studio-border: rgba(15, 23, 42, 0.1);
+      
+      --btn-resume: #d97706;
+      --btn-linkedin: #006699;
+      --btn-behance: #0044cc;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      color: var(--text-primary);
+      background-color: var(--cosmic-bg);
+      overflow-x: hidden;
+      transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Background Layers */
+    canvas#stars {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      display: block;
+      pointer-events: none;
+    }
+
+    .moon-glow-orb {
+      position: fixed;
+      top: -10%;
+      right: -5%;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 170, 59, 0.15) 0%, transparent 70%);
+      z-index: -2;
+      pointer-events: none;
+      filter: blur(40px);
+    }
+
+    .cosmic-mesh-underlay {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.6;
+      background: 
+        radial-gradient(circle at 80% 20%, rgba(255, 170, 59, 0.04) 0%, transparent 45%),
+        radial-gradient(circle at 15% 75%, rgba(91, 135, 255, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Asymmetric Glass Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      background: rgba(6, 5, 10, 0.5);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--studio-border);
+    }
+
+    .light-mode .navbar {
+      background: rgba(248, 250, 252, 0.6);
+    }
+
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 24px;
+      letter-spacing: -1px;
+      color: var(--text-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 35px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      opacity: 0.65;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .btn-toggle {
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 35px;
+    }
+
+    /* Hero Workspace - FIXED MASSIVE GAP ANOMALY */
+    .hero-banner {
+      min-height: auto;
+      display: flex;
+      align-items: center;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 60px 40px 40px 40px;
+    }
+
+    .banner-content {
+      width: 100%;
+      text-align: left;
+    }
+
+    .meta-tag {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      color: var(--accent-gold);
+      font-weight: 600;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    /* Title & Moon Layout Wrapper */
+    .hero-title-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .banner-content h1 {
+      font-size: clamp(3.2rem, 8.5vw, 6.5rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -4px;
+      margin: 0 0 30px 0;
+      text-transform: uppercase;
+    }
+
+    /* Online Moon Graphic Styling */
+    .hero-moon-img {
+      width: clamp(130px, 18vw, 240px);
+      height: clamp(130px, 18vw, 240px);
+      object-fit: contain;
+      filter: drop-shadow(0 0 30px rgba(255, 170, 59, 0.35));
+      animation: float-moon 6s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes float-moon {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(4deg); }
+    }
+
+    .hero-flex-layout {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 40px;
+      border-top: 1px solid var(--studio-border);
+      padding-top: 40px;
+    }
+
+    .subtitle-studio {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      max-width: 600px;
+      margin: 0;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle-studio strong {
+      font-weight: 700;
+      color: var(--accent-gold);
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 420px;
+      margin: 0;
+    }
+
+    /* Symmetrical Action Buttons */
+    .banner-buttons {
+      display: flex;
+      align-items: stretch;
+      gap: 16px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .social-buttons {
+      display: flex;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .btn {
+      padding: 16px 36px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    .resume-btn { background: var(--btn-resume); color: #fff; }
+    .linkedin-btn { background: var(--btn-linkedin); color: #fff; }
+    .behance-btn { background: var(--btn-behance); color: #fff; }
+
+    /* Structural Core Containers */
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    .studio-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--text-primary);
+      padding-bottom: 15px;
+      margin-bottom: 60px;
+    }
+
+    .studio-header h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin: 0;
+      letter-spacing: -1px;
+    }
+
+    .header-index {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: var(--text-secondary);
+    }
+
+    /* Manifesto Section */
+    .manifesto-body {
+      font-size: clamp(1.5rem, 3.5vw, 2.3rem);
+      line-height: 1.4;
+      font-weight: 300;
+      letter-spacing: -0.5px;
+      max-width: 1050px;
+      margin: 0;
+    }
+
+    .manifesto-body strong {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Staggered Capabilities Matrix - FIXED TYPE HIERARCHY */
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 60px;
+    }
+
+    .capability-block h3 {
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      color: var(--accent-gold);
+      margin: 0 0 15px 0;
+      font-weight: 700;
+    }
+
+    .capability-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .capability-list li {
+      font-size: 16px;
+      font-weight: 400;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--studio-border);
+      color: var(--text-secondary);
+    }
+
+    /* Editorial Portfolio Layout Grid */
+    .brand-showcase-section {
+      margin-bottom: 120px;
+    }
+
+    .brand-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 24px;
+    }
+
+    .brand-meta h4 {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-tag {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .editorial-layout-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .grid-img-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      background: var(--accent-dim-gold);
+    }
+
+    .editorial-layout-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+      filter: grayscale(0.1);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s;
+    }
+
+    .editorial-layout-grid img:hover {
+      transform: scale(1.04);
+      filter: grayscale(0);
+    }
+
+    .layout-span-7 { grid-column: span 7; height: 480px; }
+    .layout-span-5 { grid-column: span 5; height: 480px; }
+    .layout-span-4 { grid-column: span 4; height: 380px; }
+    .layout-span-8 { grid-column: span 8; height: 380px; }
+    .layout-span-6 { grid-column: span 6; height: 420px; }
+
+    @media (max-width: 768px) {
+      .hero-title-wrapper {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+      .layout-span-7, .layout-span-5, .layout-span-4, .layout-span-8, .layout-span-6 {
+        grid-column: span 12;
+        height: 300px;
+      }
+    }
+
+    /* Conceptual Workflow Grid */
+    .workflow-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .workflow-node {
+      border-top: 2px solid var(--text-primary);
+      padding-top: 25px;
+    }
+
+    .workflow-node .node-index {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-gold);
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    .workflow-node h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 10px 0;
+      text-transform: uppercase;
+    }
+
+    .workflow-node p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Studio Contact Card */
+    .studio-contact-box {
+      border: 1px solid var(--text-primary);
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .contact-cta-head {
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+      margin: 0 0 35px 0;
+      letter-spacing: -2px;
+    }
+
+    .contact-grid-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Floating WhatsApp System - FIXED ONLINE LOGO */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .whatsapp-icon-bg {
+      background-color: #25d366;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(37,211,102,0.4);
+      position: relative;
+      z-index: 2;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Cleaned WhatsApp Image Element */
+    .wa-img-logo {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .whatsapp-float:hover .whatsapp-icon-bg {
+      transform: scale(1.08);
+    }
+
+    .pulse-ring {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #25d366;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .animate-pulse1 { animation: radar-glow 2.8s infinite ease-out; }
+    .animate-pulse2 { animation: radar-glow 2.8s infinite ease-out 1.4s; }
+
+    @keyframes radar-glow {
+      0% { transform: scale(1); opacity: 0.5; }
+      100% { transform: scale(1.7); opacity: 0; }
+    }
+
+    /* Lightbox Overlay Viewport */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      background: rgba(3, 2, 5, 0.98);
+      z-index: 5000;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 30px;
+    }
+
+    #lightbox.active { display: flex; opacity: 1; }
+
+    #lightbox img {
+      max-width: 92%;
+      max-height: 85vh;
+      border-radius: 8px;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.7);
+      transform: scale(0.97);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #lightbox.active img { transform: scale(1); }
+
+    #lightbox .close {
+      position: absolute;
+      top: 40px;
+      right: 50px;
+      color: #ffffff;
+      font-size: 46px;
+      font-weight: 200;
+      cursor: pointer;
+    }
+
+    #lightbox .close:hover { color: var(--accent-gold); }
+  </style>
+</head>
+<body class="dark-mode">
+
+  <!-- Background Visual Layers -->
+  <canvas id="stars"></canvas>
+  <div class="moon-glow-orb"></div>
+  <div class="cosmic-mesh-underlay"></div>
+
+  <!-- Studio Header Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">CM.</div>
+      <div class="nav-links">
+        <a href="#home">Index</a>
+        <a href="#about">Manifesto</a>
+        <a href="#skills">Toolset</a>
+        <a href="#gallery">Selected Work</a>
+        <a href="#process">Workflow</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button id="darkToggle" class="btn-toggle" aria-label="Toggle Layout Color Tone">🌙</button>
+    </div>
+  </nav>
+
+  <!-- Hero Landing Interface Workspace with Moon Image -->
+  <header id="home" class="hero-banner">
+    <div class="banner-content">
+      <span class="meta-tag">[ 00 // DESIGN DIRECTOR ]</span>
+      
+      <!-- Flex Title with Online Moon Graphic -->
+      <div class="hero-title-wrapper">
+        <h1>Chandrakant<br/>Malli</h1>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.png" alt="Moon Visual Accent" class="hero-moon-img" />
+      </div>
+
+      <div class="hero-flex-layout">
+        <p class="subtitle-studio">Senior Graphic Designer producing <strong>high-end brand strategy</strong>, immersive print catalogs, and metric-driven media architectures.</p>
+        <p class="hero-desc">Over 5 years of translating core brand objectives into clear, impactful visual assets for premier healthcare, corporate, and lifestyle brands.</p>
+      </div>
+      <div class="banner-buttons">
+        <a href="https://drive.google.com/file/d/1QlUiwscwtHmFeTPS61gbXftyLlDm8-xd/view?usp=drive_link" target="_blank" class="btn resume-btn">📄 Review Resume</a>
+        <div class="social-buttons"> 
+          <a href="https://www.linkedin.com/in/chandrakant-m-80b5b6a7/" target="_blank" class="btn linkedin-btn">LinkedIn</a>
+          <a href="https://www.behance.net/chandrumalli" target="_blank" class="btn behance-btn">Behance</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Studio Manifesto Section -->
+  <section id="about" class="reveal container">
+    <div class="studio-header">
+      <h2>Creative Manifesto</h2>
+      <span class="header-index">01 // IDENTITY</span>
+    </div>
+    <p class="manifesto-body">
+      I engineer visual structures that bridge the gap between <strong>creative artistry</strong> and <strong>corporate strategy</strong>. By deploying advanced color science, clean mathematical grid layouts, and strict typographical rules, I transform brand values into highly functional communication networks.
+    </p>
+  </section>
+
+  <!-- Capabilities Matrix Section -->
+  <section id="skills" class="reveal container">
+    <div class="studio-header">
+      <h2>Studio Capabilities</h2>
+      <span class="header-index">02 // METHODS</span>
+    </div>
+    <div class="capabilities-grid">
+      <div class="capability-block">
+        <h3>Vector & Publication Layouts</h3>
+        <ul class="capability-list">
+          <li>Adobe Photoshop (Advanced Compositing)</li>
+          <li>Adobe Illustrator (Vector Engineering)</li>
+          <li>Adobe InDesign (Editorial Architecture)</li>
+          <li>Premium Print Production Standards</li>
+        </ul>
+      </div>
+      <div class="capability-block">
+        <h3>Digital Layouts & Environments</h3>
+        <ul class="capability-list">
+          <li>Figma (Interface & Wireframe Mechanics)</li>
+          <li>Adobe XD (Prototyping Pipelines)</li>
+          <li>Structural HTML5 / CSS Grid Frameworks</li>
+          <li>Corporate Presentation System Architecture</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected Works Gallery with Original Local File Names -->
+  <section id="gallery" class="reveal container">
+    <div class="studio-header">
+      <h2>Selected Works Gallery</h2>
+      <span class="header-index">03 // PROJECTS</span>
+    </div>
+
+    <!-- MODULE 01: ASTER HEALTHCARE -->
+    <div class="brand-showcase-section">
+      <div class="brand-meta">
+        <h4>Aster DM Healthcare</h4>
+        <span class="brand-tag">Editorial & Digital Brand Strategy</span>
+      </div>
+      <div class="editorial-layout-grid">
+        <div class="grid-img-wrapper layout-span-7">
+          <img src="artboard-7.jpg" alt="Aster DM Healthcare Editorial" />
+        </div>
+        <div class="grid-img-wrapper layout-span-5">
+          <img src="artboard-86.jpg" alt="Aster DM Healthcare Identity" />
+        </div>
+        <div class="grid-img-wrapper layout-span-5">
+          <img src="artboard-1.jpg" alt="Aster DM Healthcare Infographic" />
+        </div>
+        <div class="grid-img-wrapper layout-span-7">
+          <img src="aster-12.jpg" alt="Aster DM Healthcare Print Layout" />
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 02: MILANN BRANDING -->
+    <div class="brand-showcase-section">
+      <div class="brand-meta">
+        <h4>Milann Branding Ecosystems</h4>
+        <span class="brand-tag">Lifestyle & Package Engineering</span>
+      </div>
+      <div class="editorial-layout-grid">
+        <div class="grid-img-wrapper layout-span-5">
+          <img src="milann-1.jpg" alt="Milann Logo System" />
+        </div>
+        <div class="grid-img-wrapper layout-span-7">
+          <img src="milann-2.jpg" alt="Milann Product Packaging" />
+        </div>
+        <div class="grid-img-wrapper layout-span-8">
+          <img src="artboard-35.jpg" alt="Milann Corporate Identity" />
+        </div>
+        <div class="grid-img-wrapper layout-span-4">
+          <img src="milann-3.jpg" alt="Milann Marketing Materials" />
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 03: MPHASIS CAREERS -->
+    <div class="brand-showcase-section">
+      <div class="brand-meta">
+        <h4>Mphasis Careers Campaigns</h4>
+        <span class="brand-tag">B2B Digital Media Strategy</span>
+      </div>
+      <div class="editorial-layout-grid">
+        <div class="grid-img-wrapper layout-span-6">
+          <img src="mphasis-1.jpg" alt="Mphasis Recruitment Vector" />
+        </div>
+        <div class="grid-img-wrapper layout-span-6">
+          <img src="artboard-14.jpg" alt="Mphasis Layout Presentation" />
+        </div>
+        <div class="grid-img-wrapper layout-span-4">
+          <img src="mphasis-2.jpg" alt="Mphasis Digital Media" />
+        </div>
+        <div class="grid-img-wrapper layout-span-8">
+          <img src="mphasis-3.jpg" alt="Mphasis Campaign Layout" />
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 04: FEATHERLITE PACKAGES -->
+    <div class="brand-showcase-section">
+      <div class="brand-meta">
+        <h4>Featherlite Layout System</h4>
+        <span class="brand-tag">Minimalist Print Layouts</span>
+      </div>
+      <div class="editorial-layout-grid">
+        <div class="grid-img-wrapper layout-span-4">
+          <img src="flite-1.jpg" alt="Featherlite Minimal Print Layout" />
+        </div>
+        <div class="grid-img-wrapper layout-span-8">
+          <img src="artboard-24.jpg" alt="Featherlite Catalog Editorial" />
+        </div>
+        <div class="grid-img-wrapper layout-span-6">
+          <img src="flite-2.jpg" alt="Featherlite Product Ad" />
+        </div>
+        <div class="grid-img-wrapper layout-span-6">
+          <img src="flite-3.jpg" alt="Featherlite Product Spread" />
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 05: TOTAL HEALTH & BOLAS -->
+    <div class="brand-showcase-section">
+      <div class="brand-meta">
+        <h4>Total Health & Bolas Systems</h4>
+        <span class="brand-tag">Publication & Product Retail Layouts</span>
+      </div>
+      <div class="editorial-layout-grid">
+        <div class="grid-img-wrapper layout-span-7">
+          <img src="artboard-28.jpg" alt="Total Health Informational Grid" />
+        </div>
+        <div class="grid-img-wrapper layout-span-5">
+          <img src="bolas-1.jpg" alt="Bolas Premium Packaging Graphics" />
+        </div>
+        <div class="grid-img-wrapper layout-span-5">
+          <img src="th-1.jpg" alt="Total Health Editorial Spread" />
+        </div>
+        <div class="grid-img-wrapper layout-span-7">
+          <img src="bolas-2.jpg" alt="Bolas Retail Campaign" />
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 06: EXPERIMENTAL EXTRAS -->
+    <div class="brand-showcase-section">
+      <div class="brand-meta">
+        <h4>Creative Extras & Concepts</h4>
+        <span class="brand-tag">Experimental Vector Geometry</span>
+      </div>
+      <div class="editorial-layout-grid">
+        <div class="grid-img-wrapper layout-span-6">
+          <img src="artboard-38.jpg" alt="Experimental Design Composition 1" />
+        </div>
+        <div class="grid-img-wrapper layout-span-6">
+          <img src="artboard-39.jpg" alt="Experimental Typography Concept 2" />
+        </div>
+        <div class="grid-img-wrapper layout-span-6">
+          <img src="artboard-48.jpg" alt="Digital Vector Layout Concept 3" />
+        </div>
+        <div class="grid-img-wrapper layout-span-6">
+          <img src="artboard-43.jpg" alt="Alternative Creative Composition 4" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Studio Design Pipeline Roadmap -->
+  <section id="process" class="reveal container">
+    <div class="studio-header">
+      <h2>Studio Workflow Pipeline</h2>
+      <span class="header-index">04 // PIPELINE</span>
+    </div>
+    <div class="workflow-timeline">
+      <div class="workflow-node">
+        <span class="node-index">01 // METRICS</span>
+        <h4>Analytical Discovery</h4>
+        <p>Deconstructing structural client parameters, parsing objective campaign benchmarks, and identifying audience targets.</p>
+      </div>
+      <div class="workflow-node">
+        <span class="node-index">02 // SKETCH</span>
+        <h4>Vector Engineering</h4>
+        <p>Developing underlying alignment frameworks, scale blueprints, typography boards, and dynamic mood profiles.</p>
+      </div>
+      <div class="workflow-node">
+        <span class="node-index">03 // SYSTEM</span>
+        <h4>Asset Execution</h4>
+        <p>Generating high-fidelity structural artwork optimized precisely for print dots-per-inch or web coordinate parameters.</p>
+      </div>
+      <div class="workflow-node">
+        <span class="node-index">04 // DEPLOY</span>
+        <h4>Bundle Delivery</h4>
+        <p>Compiling production-ready asset archives alongside thorough usage documentation and brand system definitions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strategic Communications Hub -->
+  <section id="contact" class="reveal container">
+    <div class="studio-contact-box">
+      <h3 class="contact-cta-head">Let's Craft Something Custom</h3>
+      <p class="contact-subtext">Seeking senior creative execution, corporate identity systems, or dynamic brand layout engineering?</p>
+      <div class="email-link">📧 <a href="mailto:mallichandru007@gmail.com">mallichandru007@gmail.com</a></div>
+      <div class="contact-grid-buttons">
+        <a class="btn resume-btn" href="https://drive.google.com/file/d/1QlUiwscwtHmFeTPS61gbXftyLlDm8-xd/view?usp=drive_link" target="_blank">📄 Core Resume</a>
+        <a class="btn linkedin-btn" href="https://www.linkedin.com/in/chandrakant-m-80b5b6a7/" target="_blank">LinkedIn Matrix</a>
+        <a class="btn behance-btn" href="https://www.behance.net/chandrumalli" target="_blank">Behance Studio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp Action with Free Online SVG/PNG Logo -->
+  <a href="https://wa.me/8088893393" target="_blank" class="whatsapp-float" aria-label="Initiate direct studio brief via WhatsApp">
+    <div class="pulse-ring animate-pulse1"></div>
+    <div class="pulse-ring animate-pulse2"></div>
+    <div class="whatsapp-icon-bg">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png" alt="WhatsApp" class="wa-img-logo" />
+    </div>
+  </a>
+
+  <!-- Lightbox Overlay Viewport -->
+  <div id="lightbox" role="dialog" aria-hidden="true">
+    <span class="close" aria-label="Exit Studio Frame Overlay">&times;</span>
+    <img src="" alt="Enlarged Visual Presentation Studio Work Showcase" />
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Chandrakant Malli. All Agency Assets Protected.</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      /* ==========================================================
+         STAR FIELD CANVAS RENDERING
+      ========================================================== */
+      const canvas = document.getElementById("stars");
+      const ctx = canvas.getContext("2d");
+      const darkToggle = document.getElementById("darkToggle");
+
+      let stars = [];
+      let isDarkMode = document.body.classList.contains("dark-mode");
+      let animationId;
+
+      function initStars() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        stars = Array.from({ length: 120 }, () => ({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 1.5,
+          opacity: Math.random(),
+          blink: (Math.random() * 0.01) + 0.003
+        }));
+      }
+
+      function drawStars() {
+        if (!isDarkMode) return;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#ffffff";
+
+        stars.forEach(star => {
+          star.opacity += star.blink;
+          if (star.opacity > 1 || star.opacity < 0) {
+            star.blink *= -1;
+          }
+
+          ctx.globalAlpha = Math.max(0, Math.min(1, star.opacity));
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        ctx.globalAlpha = 1.0;
+        animationId = requestAnimationFrame(drawStars);
+      }
+
+      function startStars() {
+        cancelAnimationFrame(animationId);
+        drawStars();
+      }
+
+      function stopStars() {
+        cancelAnimationFrame(animationId);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      darkToggle?.addEventListener("click", () => {
+        const isLight = document.body.classList.toggle("light-mode");
+        document.body.classList.toggle("dark-mode", !isLight);
+        isDarkMode = !isLight;
+        darkToggle.textContent = isDarkMode ? "🌙" : "☀️";
+
+        if (isDarkMode) {
+          startStars();
+        } else {
+          stopStars();
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        initStars();
+      });
+      
+      initStars();
+      if (isDarkMode) startStars();
+
+      /* ==========================================================
+         ORCHESTRATED SCROLL REVEAL TRIGGERS
+      ========================================================== */
+      const reveals = document.querySelectorAll(".reveal");
+      
+      const revealOnScroll = () => {
+        const triggerBottom = window.innerHeight - 60;
+        reveals.forEach(el => {
+          const elTop = el.getBoundingClientRect().top;
+          if (elTop < triggerBottom) {
+            el.classList.add("active");
+          }
+        });
+      };
+      
+      window.addEventListener("scroll", revealOnScroll);
+      revealOnScroll();
+
+      /* ==========================================================
+         STUDIO PORTFOLIO LIGHTBOX ENGINE
+      ========================================================== */
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = lightbox.querySelector("img");
+      const closeBtn = lightbox.querySelector(".close");
+
+      document.querySelectorAll(".editorial-layout-grid img").forEach(img => {
+        img.addEventListener("click", () => {
+          lightbox.style.display = "flex";
+          setTimeout(() => {
+            lightbox.classList.add("active");
+          }, 10);
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          lightbox.setAttribute("aria-hidden", "false");
+        });
+      });
+
+      const closeLightbox = () => {
+        lightbox.classList.remove("active");
+        lightbox.setAttribute("aria-hidden", "true");
+        setTimeout(() => {
+          lightbox.style.display = "none";
+        }, 400);
+      };
+
+      closeBtn?.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lightbox.classList.contains("active")) {
+          closeLightbox();
+        }
+      });
+
+      /* ==========================================================
+         ACCURATE SCROLL OFFSET INTERACTION ROUTER
+      ========================================================== */
+      document.querySelectorAll(".nav-links a").forEach(link => {
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          const targetId = link.getAttribute("href");
+          const targetSection = document.querySelector(targetId);
+          
+          if (targetSection) {
+            const navHeight = 90; 
+            const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - navHeight;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: "smooth"
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
