@@ -173,7 +173,7 @@
       display: block;
     }
 
-    /* Title & Floating Profile Wrapper */
+    /* Title & Celestial Graphic Wrapper */
     .hero-title-wrapper {
       display: flex;
       align-items: center;
@@ -190,21 +190,43 @@
       text-transform: uppercase;
     }
 
-    /* Floating Circular Profile Image */
-    .hero-profile-img {
-      width: clamp(140px, 18vw, 220px);
-      height: clamp(140px, 18vw, 220px);
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--accent-gold);
-      box-shadow: 0 0 35px var(--accent-dim-gold);
-      animation: float-profile 6s ease-in-out infinite;
+    /* Vector Moon Graphic (Dark Mode Active) */
+    .hero-moon-svg {
+      width: clamp(130px, 18vw, 220px);
+      height: clamp(130px, 18vw, 220px);
+      filter: drop-shadow(0 0 35px rgba(255, 170, 59, 0.4));
+      animation: float-moon 6s ease-in-out infinite;
       flex-shrink: 0;
+      display: block;
     }
 
-    @keyframes float-profile {
+    /* Vector Sun Graphic (Light Mode Active) */
+    .hero-sun-svg {
+      width: clamp(130px, 18vw, 220px);
+      height: clamp(130px, 18vw, 220px);
+      filter: drop-shadow(0 0 40px rgba(217, 119, 6, 0.35));
+      animation: spin-sun 20s linear infinite;
+      flex-shrink: 0;
+      display: none;
+    }
+
+    /* Toggle Celestial Objects based on Theme */
+    .light-mode .hero-moon-svg {
+      display: none !important;
+    }
+
+    .light-mode .hero-sun-svg {
+      display: block !important;
+    }
+
+    @keyframes float-moon {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(2deg); }
+      50% { transform: translateY(-12px) rotate(4deg); }
+    }
+
+    @keyframes spin-sun {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .hero-flex-layout {
@@ -606,15 +628,58 @@
     </div>
   </nav>
 
-  <!-- Hero Landing Workspace with Floating Profile Image -->
+  <!-- Hero Landing Workspace with Dual Celestial Objects -->
   <header id="home" class="hero-banner">
     <div class="banner-content">
       <span class="meta-tag">[ 00 // DESIGN DIRECTOR ]</span>
       
-      <!-- Flex Title with Floating Profile Picture -->
+      <!-- Flex Title with Vector Celestial Objects -->
       <div class="hero-title-wrapper">
         <h1>Chandrakant<br/>Malli</h1>
-        <img src="android-chrome-512x512.png" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80'" alt="Chandrakant Malli" class="hero-profile-img" />
+        
+        <!-- Inline Vector Moon (Dark Mode) -->
+        <svg class="hero-moon-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="80" fill="url(#moon-grad)"/>
+          <circle cx="75" cy="70" r="18" fill="#d8b068" opacity="0.35"/>
+          <circle cx="125" cy="120" r="22" fill="#d8b068" opacity="0.25"/>
+          <circle cx="130" cy="65" r="12" fill="#d8b068" opacity="0.3"/>
+          <circle cx="70" cy="135" r="14" fill="#d8b068" opacity="0.2"/>
+          <circle cx="100" cy="105" r="9" fill="#d8b068" opacity="0.25"/>
+          <defs>
+            <radialGradient id="moon-grad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(70 60) rotate(48) scale(110)">
+              <stop stop-color="#fff8e7"/>
+              <stop offset="0.6" stop-color="#f5c26b"/>
+              <stop offset="1" stop-color="#b87314"/>
+            </radialGradient>
+          </defs>
+        </svg>
+
+        <!-- Inline Vector Sun (Light Mode) -->
+        <svg class="hero-sun-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="54" fill="url(#sun-core-grad)"/>
+          <!-- Radiant Rays -->
+          <g stroke="url(#sun-ray-grad)" stroke-width="7" stroke-linecap="round" opacity="0.9">
+            <line x1="100" y1="18" x2="100" y2="34"/>
+            <line x1="100" y1="166" x2="100" y2="182"/>
+            <line x1="18" y1="100" x2="34" y2="100"/>
+            <line x1="166" y1="100" x2="182" y2="100"/>
+            <line x1="42" y1="42" x2="53" y2="53"/>
+            <line x1="147" y1="147" x2="158" y2="158"/>
+            <line x1="42" y1="158" x2="53" y2="147"/>
+            <line x1="147" y1="53" x2="158" y2="42"/>
+          </g>
+          <defs>
+            <radialGradient id="sun-core-grad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(80 75) scale(75)">
+              <stop stop-color="#ffffff"/>
+              <stop offset="0.45" stop-color="#ffb703"/>
+              <stop offset="1" stop-color="#d97706"/>
+            </radialGradient>
+            <linearGradient id="sun-ray-grad" x1="0" y1="0" x2="200" y2="200">
+              <stop stop-color="#ffaa3b"/>
+              <stop offset="1" stop-color="#d97706"/>
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
 
       <div class="hero-flex-layout">
@@ -685,16 +750,16 @@
       </div>
       <div class="editorial-layout-grid">
         <div class="grid-img-wrapper layout-span-7">
-          <img src="artboard-7.jpg" onerror="this.src='https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&q=80'" alt="Aster DM Healthcare Editorial" />
+          <img src="artboard-7.jpg" alt="Aster DM Healthcare Editorial" />
         </div>
         <div class="grid-img-wrapper layout-span-5">
-          <img src="artboard-86.jpg" onerror="this.src='https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=700&q=80'" alt="Aster DM Healthcare Identity" />
+          <img src="artboard-86.jpg" alt="Aster DM Healthcare Identity" />
         </div>
         <div class="grid-img-wrapper layout-span-5">
-          <img src="artboard-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80'" alt="Aster DM Healthcare Infographic" />
+          <img src="artboard-1.jpg" alt="Aster DM Healthcare Infographic" />
         </div>
         <div class="grid-img-wrapper layout-span-7">
-          <img src="aster-12.jpg" onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1000&q=80'" alt="Aster DM Healthcare Print Layout" />
+          <img src="aster-12.jpg" alt="Aster DM Healthcare Print Layout" />
         </div>
       </div>
     </div>
@@ -707,16 +772,16 @@
       </div>
       <div class="editorial-layout-grid">
         <div class="grid-img-wrapper layout-span-5">
-          <img src="milann-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=700&q=80'" alt="Milann Logo System" />
+          <img src="milann-1.jpg" alt="Milann Logo System" />
         </div>
         <div class="grid-img-wrapper layout-span-7">
-          <img src="milann-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1509343256512-d77a5cb3791b?auto=format&fit=crop&w=1000&q=80'" alt="Milann Product Packaging" />
+          <img src="milann-2.jpg" alt="Milann Product Packaging" />
         </div>
         <div class="grid-img-wrapper layout-span-8">
-          <img src="artboard-35.jpg" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1100&q=80'" alt="Milann Corporate Identity" />
+          <img src="artboard-35 (1).jpg" alt="Milann Corporate Identity" />
         </div>
         <div class="grid-img-wrapper layout-span-4">
-          <img src="milann-3.jpg" onerror="this.src='https://images.unsplash.com/photo-1561070791-26c113006238?auto=format&fit=crop&w=600&q=80'" alt="Milann Marketing Materials" />
+          <img src="milann-3.jpg" alt="Milann Marketing Materials" />
         </div>
       </div>
     </div>
@@ -729,16 +794,16 @@
       </div>
       <div class="editorial-layout-grid">
         <div class="grid-img-wrapper layout-span-6">
-          <img src="mphasis-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80'" alt="Mphasis Recruitment Vector" />
+          <img src="mphasis-1.jpg" alt="Mphasis Recruitment Vector" />
         </div>
         <div class="grid-img-wrapper layout-span-6">
-          <img src="artboard-14.jpg" onerror="this.src='https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=800&q=80'" alt="Mphasis Layout Presentation" />
+          <img src="artboard-14.jpg" alt="Mphasis Layout Presentation" />
         </div>
         <div class="grid-img-wrapper layout-span-4">
-          <img src="mphasis-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80'" alt="Mphasis Digital Media" />
+          <img src="mphasis-2.jpg" alt="Mphasis Digital Media" />
         </div>
         <div class="grid-img-wrapper layout-span-8">
-          <img src="mphasis-3.jpg" onerror="this.src='https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1100&q=80'" alt="Mphasis Campaign Layout" />
+          <img src="mphasis-3.jpg" alt="Mphasis Campaign Layout" />
         </div>
       </div>
     </div>
@@ -751,16 +816,16 @@
       </div>
       <div class="editorial-layout-grid">
         <div class="grid-img-wrapper layout-span-4">
-          <img src="flite-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=600&q=80'" alt="Featherlite Minimal Print Layout" />
+          <img src="flite-1.jpg" alt="Featherlite Minimal Print Layout" />
         </div>
         <div class="grid-img-wrapper layout-span-8">
-          <img src="artboard-24.jpg" onerror="this.src='https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1100&q=80'" alt="Featherlite Catalog Editorial" />
+          <img src="artboard-24.jpg" alt="Featherlite Catalog Editorial" />
         </div>
         <div class="grid-img-wrapper layout-span-6">
-          <img src="flite-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80'" alt="Featherlite Product Ad" />
+          <img src="flite-2.jpg" alt="Featherlite Product Ad" />
         </div>
         <div class="grid-img-wrapper layout-span-6">
-          <img src="flite-3.jpg" onerror="this.src='https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=80'" alt="Featherlite Product Spread" />
+          <img src="flite-3.jpg" alt="Featherlite Product Spread" />
         </div>
       </div>
     </div>
@@ -773,16 +838,16 @@
       </div>
       <div class="editorial-layout-grid">
         <div class="grid-img-wrapper layout-span-7">
-          <img src="artboard-28.jpg" onerror="this.src='https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=80'" alt="Total Health Informational Grid" />
+          <img src="artboard-28.jpg" alt="Total Health Informational Grid" />
         </div>
         <div class="grid-img-wrapper layout-span-5">
-          <img src="bolas-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=700&q=80'" alt="Bolas Premium Packaging Graphics" />
+          <img src="bolas-1.jpg" alt="Bolas Premium Packaging Graphics" />
         </div>
         <div class="grid-img-wrapper layout-span-5">
-          <img src="th-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=700&q=80'" alt="Total Health Editorial Spread" />
+          <img src="th-1 (1).jpg" alt="Total Health Editorial Spread" />
         </div>
         <div class="grid-img-wrapper layout-span-7">
-          <img src="bolas-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=1000&q=80'" alt="Bolas Retail Campaign" />
+          <img src="bolas-2.jpg" alt="Bolas Retail Campaign" />
         </div>
       </div>
     </div>
@@ -795,16 +860,16 @@
       </div>
       <div class="editorial-layout-grid">
         <div class="grid-img-wrapper layout-span-6">
-          <img src="artboard-38.jpg" onerror="this.src='https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80'" alt="Experimental Design Composition 1" />
+          <img src="artboard-38.jpg" alt="Experimental Design Composition 1" />
         </div>
         <div class="grid-img-wrapper layout-span-6">
-          <img src="artboard-39.jpg" onerror="this.src='https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=80'" alt="Experimental Typography Concept 2" />
+          <img src="artboard-39.jpg" alt="Experimental Typography Concept 2" />
         </div>
         <div class="grid-img-wrapper layout-span-6">
-          <img src="artboard-48.jpg" onerror="this.src='https://images.unsplash.com/photo-1618005198143-e5283b519a7f?auto=format&fit=crop&w=800&q=80'" alt="Digital Vector Layout Concept 3" />
+          <img src="artboard-48.jpg" alt="Digital Vector Layout Concept 3" />
         </div>
         <div class="grid-img-wrapper layout-span-6">
-          <img src="artboard-43.jpg" onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80'" alt="Alternative Creative Composition 4" />
+          <img src="artboard-43.jpg" alt="Alternative Creative Composition 4" />
         </div>
       </div>
     </div>
